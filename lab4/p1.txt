@@ -1,0 +1,56 @@
+create table Nurse_Table(employeeid int not null primary key,name varchar(100),position varchar(100),registered varchar(1),ssn int not null);
+insert into Nurse_Table(employeeid,name,position,registered,ssn) values(103,'Paul Flowers','Nurse','f',222322890);
+insert into Nurse_Table(employeeid,name,position,registered,ssn) values(102,'Laverene Roberts','Nurse','t',222222890);
+insert into Nurse_Table(employeeid,name,position,registered,ssn) values(101,'Carla Espinosa','Head Nurse','t',1234567890);
+
+
+
+create table Physician_Table(employeeid int not null,name varchar(100),position varchar(100), ssn int not null);
+insert into Physician_Table(employeeid,name,position,ssn) values(1,'John Forian','Staff Internist',111111111);
+insert into Physician_Table(employeeid,name,position,ssn) values(2,'Elliot Reid','Attending Physician',111122111);
+insert into Physician_Table(employeeid,name,position,ssn) values(3,'christopher Turk',' Surgical Attending Physician',331122111);
+insert into Physician_Table(employeeid,name,position,ssn) values(4,'Percival Kox','Surgical Attending Physician',331122144);
+
+create table Department_Table(departmentid int not null primary key,name varchar(100),head int not null);
+insert into Department_Table(departmentid,name,head) values(3,'Psychiatry',9);
+insert into Department_Table(departmentid,name,head) values(2,'Surgery',7);
+insert into Department_Table(departmentid,name,head) values(1,'General Medicine',4);
+
+create table Appointment_Table(appointmentid int not null primary key,patient int not null,prepnurse int ,physician int not null,start_dt_time varchar(100) not null,end_dt_time varchar(100) not null,examination varchar(1));
+insert into Appointment_Table(appointmentid,patient,physician,start_dt_time,end_dt_time,examination) values(16456719,732418432,4,'2008-04-26 12:00:00','2008-04-26 13:00:00','C');
+insert into Appointment_Table(appointmentid,patient,prepnurse,physician,start_dt_time,end_dt_time,examination) values(87456734,652418432,103,2,'2008-04-26 11:00:00','2008-04-26 12:00:00','C');
+insert into Appointment_Table(appointmentid,patient,physician,start_dt_time,end_dt_time,examination) values(16456734,532418432,4,'2008-04-26 10:00:00','2008-04-26 11:00:00','C');
+insert into Appointment_Table(appointmentid,patient,prepnurse,physician,start_dt_time,end_dt_time,examination) values(12356734,532678432,101,1,'2008-04-24 10:00:00','2008-04-24 11:00:00','A');
+
+
+
+create table Room_Table(roomnumber int not null primary key,roomtype varchar(100) not null,blockfloor int not null,blockcode int not null,unavailable varchar(1));
+insert into Room_Table(roomnumber,roomtype,blockfloor,blockcode,unavailable) values(212,'Single',3,2,'f');
+insert into Room_Table(roomnumber,roomtype,blockfloor,blockcode,unavailable) values(102,'Single',2,1,'f');
+insert into Room_Table(roomnumber,roomtype,blockfloor,blockcode,unavailable) values(101,'Single',1,1,'f');
+
+
+create table Patient(ssn int not null primary key,name varchar(100) not null,address varchar(100),phone varchar(100),insuranceid int ,pcp int);
+insert into Patient(ssn,name,address,phone,insuranceid,pcp) values(100000001,'John Smith','42 Foobar Lane','555-0256',146421543,1);
+insert into Patient(ssn,name,address,phone,insuranceid,pcp) values(100000002,'Grace Smith','37 Snafu Drive','555-0512',146423343,2);
+insert into Patient(ssn,name,address,phone,insuranceid,pcp) values(100000003,'Random J Patient','101 Omgbbq Street','555-1204',133423343,2);
+insert into Patient(ssn,name,address,phone,insuranceid,pcp) values(100000004,'Dennis Doe','1100 Foobaz Avenue','555-2048',133427843,3);
+
+
+create table Block(block_floor int not null,block_code int not null primary key);
+ALTER TABLE Block DROP PRIMARY KEY;
+insert into Block(block_floor,block_code) values(1,1);
+insert into Block(block_floor,block_code) values(1,2);
+insert into Block(block_floor,block_code) values(2,1);
+insert into Block(block_floor,block_code) values(2,2);
+insert into Block(block_floor,block_code) values(3,1);
+insert into Block(block_floor,block_code) values(3,2);
+
+
+
+
+
+
+
+
+
