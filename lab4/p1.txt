@@ -18,7 +18,7 @@ insert into Department_Table(departmentid,name,head) values(1,'General Medicine'
 
 create table Appointment_Table(appointmentid int not null primary key,patient int not null,prepnurse int ,physician int not null,start_dt_time varchar(100) not null,end_dt_time varchar(100) not null,examination varchar(1));
 insert into Appointment_Table(appointmentid,patient,physician,start_dt_time,end_dt_time,examination) values(16456719,732418432,4,'2008-04-26 12:00:00','2008-04-26 13:00:00','C');
-insert into Appointment_Table(appointmentid,patient,prepnurse,physician,start_dt_time,end_dt_time,examination) values(87456734,652418432,103,2,'2008-04-26 11:00:00','2008-04-26 12:00:00','C');
+ia
 insert into Appointment_Table(appointmentid,patient,physician,start_dt_time,end_dt_time,examination) values(16456734,532418432,4,'2008-04-26 10:00:00','2008-04-26 11:00:00','C');
 insert into Appointment_Table(appointmentid,patient,prepnurse,physician,start_dt_time,end_dt_time,examination) values(12356734,532678432,101,1,'2008-04-24 10:00:00','2008-04-24 11:00:00','A');
 
@@ -45,6 +45,38 @@ insert into Block(block_floor,block_code) values(2,1);
 insert into Block(block_floor,block_code) values(2,2);
 insert into Block(block_floor,block_code) values(3,1);
 insert into Block(block_floor,block_code) values(3,2);
+
+
+create table Undergoes_Table( patient int not null primary key,hprocedure int,date varchar(100) not null,physician int ,assistingnurse int);
+insert into Undergoes_Table(patient,hprocedure,date,physician,assistingnurse) values(100000001,6,'2008-05-02 00:00:00',3,101);
+insert into Undergoes_Table(patient,hprocedure,date,physician,assistingnurse) values(100000002,7,'2008-05-10 00:00:00',7,101);
+insert into Undergoes_Table(patient,hprocedure,date,physician,assistingnurse) values(100000004,7,'2008-05-13 00:00:00',3,103);
+
+
+create table Trained_Table(physician int not null primary key,treatment int,certificationdate varchar(100),certificationexpires varchar(100));
+insert into Trained_Table(physician,treatment,certificationdate,certificationexpires) values(3,1,'2008-01-01','2008-12-31');
+insert into Trained_Table(physician,treatment,certificationdate,certificationexpires) values(3,2,'2008-01-01','2008-12-31');
+insert into Trained_Table(physician,treatment,certificationdate,certificationexpires) values(6,2,'2008-01-01','2008-12-31');
+insert into Trained_Table(physician,treatment,certificationdate,certificationexpires) values(6,5,'2007-01-01','2007-12-31');
+insert into Trained_Table(physician,treatment,certificationdate,certificationexpires) values(7,1,'2008-01-01','2008-12-31');
+
+
+
+
+
+create table Procedure_Table(code int primary key auto_increment, name varchar(100),cost int);
+insert into Procedure_Table(name,cost) values('Obfustcated Dermogastromy',10000);
+insert into Procedure_Table(name,cost) values('Complete wallectomy',10000);
+insert into Procedure_Table(name,cost) values('Folded Demiophtalmectomy',4500);
+insert into Procedure_Table(name,cost) values('Obtuse Pyloric Recombulation',3750);
+insert into Procedure_Table(name,cost) values('Reverse Rhinodoplasty',1500);
+
+
+QUERIES
+1)select h.name as patient,k.name as physician from Patient h join Physician_Table k on h.pcp=k.employeeid where h.pcp not IN (select d.head from Department_Table d join Physician_Table p where p.employeeid=d.head );
+
+2)select p.name as "patients" , ph.name as "physician" from Appointment_Table a inner join Patient p on p.ssn=a.patient inner join Physician_Table ph on ph.employeeid=a.physician where a.prenurse in(select employeeid from NURSE_TABLE where registered="t")and p.name in (select pa.name from appointment t inner join patient pa on t.patient=pa.ssn group by t.patient having count(t.patient)>=2);
+
 
 
 
